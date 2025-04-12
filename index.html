@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geri Sayım</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+    }
+
+    .countdown {
+      text-align: center;
+    }
+
+    .countdown h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .time {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 2rem;
+    }
+
+    .time div {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .label {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown">
+    <h1>🚀 Yeni Yıla Geri Sayım</h1>
+    <div class="time">
+      <div><span id="days">--</span><div class="label">Gün</div></div>
+      <div><span id="hours">--</span><div class="label">Saat</div></div>
+      <div><span id="minutes">--</span><div class="label">Dakika</div></div>
+      <div><span id="seconds">--</span><div class="label">Saniye</div></div>
+    </div>
+  </div>
+
+  <script>
+    const targetDate = new Date("January 1, 2026 00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const gap = targetDate - now;
+
+      const second = 1000;
+      const minute = second * 60;
+      const hour = minute * 60;
+      const day = hour * 24;
+
+      const d = Math.floor(gap / day);
+      const h = Math.floor((gap % day) / hour);
+      const m = Math.floor((gap % hour) / minute);
+      const s = Math.floor((gap % minute) / second);
+
+      document.getElementById("days").textContent = d;
+      document.getElementById("hours").textContent = h;
+      document.getElementById("minutes").textContent = m;
+      document.getElementById("seconds").textContent = s;
+    };
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
